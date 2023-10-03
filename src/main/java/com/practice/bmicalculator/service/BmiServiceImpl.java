@@ -1,5 +1,7 @@
 package com.practice.bmicalculator.service;
 
+import java.text.DecimalFormat;
+
 import org.springframework.stereotype.Service;
 
 import com.practice.bmicalculator.model.User;
@@ -12,7 +14,11 @@ public class BmiServiceImpl implements BmiService {
 		double height = user.getHeight() / 100;
 		double weight = user.getWeight();
 		double bmi = (weight) / (height * height);
-		return Math.round(bmi);
+
+		DecimalFormat decimalFormat = new DecimalFormat("0.00");
+		String formattedNumber = decimalFormat.format(bmi);
+		double twoDecimalNumber = Double.parseDouble(formattedNumber);
+		return twoDecimalNumber;
 	}
 
 	@Override
